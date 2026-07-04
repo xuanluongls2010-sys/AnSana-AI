@@ -152,13 +152,18 @@ async function startServer() {
     }
   });
 
-  // 3. Vite development vs Production asset serving
+ 
+// 3. Vite development vs Production asset serving
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
     });
     app.use(vite.middlewares);
+    
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`AnSana AI HTTP Server listening on port ${PORT}`);
+    });
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
@@ -167,10 +172,10 @@ async function startServer() {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`AnSana AI HTTP Server listening on port ${PORT}`);
-  });
 }
 
+// Gọi hàm khởi chạy cấu hình ban đầu cho môi trường dev
 startServer();
+
+// Dòng quan trọng nhất để Vercel chạy được Serverless API:
+export default startServer;
