@@ -1,0 +1,6 @@
+{
+  "name": "AnSana AI",
+  "description": "An empathetic student stress support chatbot and wellness companion offering evidence-based cognitive behavioral coping strategies and grounding exercises.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
